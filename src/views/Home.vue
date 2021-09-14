@@ -5,6 +5,7 @@
       <el-button type="primary">element-button</el-button>
       <div>{{ this.list }}</div>
     </div>
+    <fc-designer ref="designer"/>
   </div>
 </template>
 
@@ -18,6 +19,7 @@ export default {
     })
   },
   async mounted() {
+    this.$message("sdfs");
     this.$store.dispatch('index/Test');
   }
 };
