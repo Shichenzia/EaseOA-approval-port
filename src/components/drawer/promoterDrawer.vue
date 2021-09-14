@@ -62,7 +62,7 @@ export default {
     }
 }
 </script>
-<style lang="less">
+<style lang="scss">
 .set_promoter{
     .promoter_content {
         padding: 0 20px;

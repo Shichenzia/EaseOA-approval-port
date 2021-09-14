@@ -38,12 +38,16 @@
       ref="designer"
       heigth="90%"
     />
+    <setting v-show="stepsNum === 2" />
+    <More v-show="stepsNum === 3" />
   </div>
 </template>
 
 <script>
 import BaseInfo from "./BaseInfo.vue";
 import FromCreat from "./FromCreat.vue";
+import setting from "./setting.vue";
+import More from "./More.vue";
 export default {
   data() {
     return {
@@ -52,7 +56,9 @@ export default {
   },
   components: {
     BaseInfo,
-    FromCreat
+    FromCreat,
+    setting,
+    More
   },
   methods: {
     goBack() {

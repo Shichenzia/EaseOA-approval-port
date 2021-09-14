@@ -168,7 +168,7 @@ export default {
     }
 }
 </script>
-<style lang="less">
+<style lang="scss">
 .set_promoter{
     .approver_content {
         padding-bottom: 10px;

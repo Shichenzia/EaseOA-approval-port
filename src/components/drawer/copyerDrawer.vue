@@ -76,7 +76,7 @@ export default {
 }
 </script>
 
-<style lang="less">
+<style lang="scss">
 .set_copyer{
     .copyer_content{
         padding: 20px 20px 0;

@@ -243,7 +243,7 @@ export default {
 }
 </script>
 
-<style lang="less">
+<style lang="scss">
 .condition_copyer{
     .el-drawer__body {
         .priority_level {

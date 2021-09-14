@@ -1,24 +1,5 @@
 <template>
 	<div>
-		<div class="fd-nav">
-			<div class="fd-nav-left">
-				<div class="fd-nav-back" @click="toReturn"><i class="anticon anticon-left"></i></div>
-				<div class="fd-nav-title">{{workFlowDef.name}}</div>
-			</div>
-			<!-- <div class="fd-nav-center">
-                <div class="fd-nav-container">
-                    <div class="ghost-bar" style="transform: translateX(300px);"></div>
-                    <div class="fd-nav-item"><span class="order-num">1</span>基础设置</div>
-                    <div class="fd-nav-item"><span class="order-num">2</span>表单设计</div>
-                    <div class="fd-nav-item active"><span class="order-num">3</span>流程设计</div>
-                    <div class="fd-nav-item"><span class="order-num">4</span>高级设置</div>
-                </div>
-            </div> -->
-			<div class="fd-nav-right">
-				<!-- <button type="button" class="ant-btn button-preview"><span>预 览</span></button> -->
-				<button type="button" class="ant-btn button-publish" @click="saveSet"><span>发 布</span></button>
-			</div>
-		</div>
 		<div class="fd-nav-content">
 			<section class="dingflow-design">
 				<div class="zoom">
@@ -75,7 +56,18 @@ export default {
 		};
 	},
 	created() {
-		this.$axios.get(`${process.env.BASE_URL}data.json`, {
+		// this.$axios.get(`${process.env.BASE_URL}data.json`, {
+		// 	workFlowDefId: this.$route.params.workFlowDefId
+		// }).then(({data}) => {			
+		// 	this.processConfig = data;
+		// 	let {nodeConfig,flowPermission,directorMaxLevel,workFlowDef,tableId} = data
+		// 	this.nodeConfig = nodeConfig;
+		// 	this.flowPermission = flowPermission;
+		// 	this.directorMaxLevel = directorMaxLevel;
+		// 	this.workFlowDef = workFlowDef
+		// 	this.tableId = tableId
+		// })		
+		this.$axios.get(`http://localhost:8080/data`, {
 			workFlowDefId: this.$route.params.workFlowDefId
 		}).then(({data}) => {			
 			this.processConfig = data;
@@ -150,7 +142,7 @@ export default {
 };
 </script>
 <style>
-@import "../css/workflow.css";
+@import "../../css/workflow.css";
 .error-modal-list {
 	width: 455px;
 }
