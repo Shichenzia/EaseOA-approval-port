@@ -1,0 +1,40 @@
+.create-approval-box{
+  width: 100%;
+  height: 100vh;
+  .heard{
+    background-color: #fff;
+    min-width: 1200px;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    height: 80px;
+    z-index: 2;
+    position: relative;
+    box-shadow: 0 1px 6px 0 rgb(0 0 0 / 6%);
+    .heard-left{
+      width: 350px;
+      min-width: 350px;
+      display: flex;
+      align-items: center;
+      font-size: 17px;
+      cursor: pointer;
+      i{
+        margin-right: 5px;
+      }
+    }
+    .heard-content{
+      min-width: 500px;
+      width: 900px;
+    }
+    .heard-right{
+      width: 350px;
+      min-width: 350px;
+      display: flex;
+      justify-content: flex-end;
+      .el-button{
+        width: 100px;
+        height: 40px;
+      }
+    }
+  }
+}
