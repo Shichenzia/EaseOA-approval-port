@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+import Home from '../views/Home/Index.vue'
 import CreateApproval from "../views/CreateApproval/Index.vue";
 
 Vue.use(VueRouter)
