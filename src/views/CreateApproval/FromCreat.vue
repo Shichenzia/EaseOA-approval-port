@@ -1,32 +1,47 @@
 <template>
   <div class="from-creat-box">
     <fc-designer ref="designer" />
-    <button @click="add">提交</button>
   </div>
 </template>
 
 <script>
+import { mapState } from "vuex";
+
 export default {
   data() {
-    return {
-      
-    }
+    return {};
+  },
+  computed: {
+    ...mapState({
+      FcDesignerRuleJson: (state) => state.approval.FcDesignerRuleJson,
+      FcDesignerOptionsJson: (state) => state.approval.FcDesignerOptionsJson,
+    })
   },
   methods: {
-    add() {
-      console.log("getRule", this.$refs.designer.getRule());
-      console.log("getJson", this.$refs.designer.getJson());
-      console.log("getOption", this.$refs.designer.getOption());
-      
-      this.$store.dispatch("home/addTemplate", {
-        name: "模板一",
-        creator_id: "dfsfsdfg555",
-        json: this.$refs.designer.getJson(),
-        class_id: "333"
-      })
+    commitJson() {
+      this.$store.commit("approval/setBaseInfo", {
+        property: "FcDesignerOptionsJson",
+        data: JSON.stringify(this.$refs.designer.getOption()),
+      });
+      this.$store.commit("approval/setBaseInfo", {
+        property: "FcDesignerRuleJson",
+        data: this.$refs.designer.getJson(),
+      });
+    },
+  },
+  watch:{
+    FcDesignerRuleJson: function(){
+      this.$refs.designer.setRule(this.FcDesignerRuleJson);
+      this.$refs.designer.setOption(JSON.parse(this.FcDesignerOptionsJson));
     }
-  }
-}
+  },
+  mounted() {
+    this.$store.commit("approval/setBaseInfo", {
+        property: "commitJson",
+        data: this.commitJson,
+    });
+  },
+};
 </script>
 
 <style lang="scss" scope>
