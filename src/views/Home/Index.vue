@@ -6,10 +6,7 @@
         <leftNavBar />
       </div>
       <div class="right">
-        <appAdmin v-if="headTab === '1'" />
-        <Authority v-if="headTab === '4'" />
-        <Departmentanduser v-if="headTab === '5-1'" />
-        <Role v-if="headTab === '5-2'" />
+        <router-view></router-view>
       </div>
     </div>
   </div>
@@ -19,18 +16,11 @@
 import { mapState } from "vuex";
 import Header from "../../components/Header/Index.vue";
 import leftNavBar from "../../components/leftNavBar/Index.vue";
-import appAdmin from "../../components/appAdmin/Index.vue";
-import Authority from "../../components/Authority/Index.vue";
-import Departmentanduser from "../../components/Team/Departmentanduser.vue";
-import Role from "../../components/Team/Role.vue";
+
 export default {
   components: {
     Header,
     leftNavBar,
-    appAdmin,
-    Authority,
-    Departmentanduser,
-    Role
   },
   data() {
     return {
@@ -43,6 +33,9 @@ export default {
     }),
   },
   async mounted() {
+    if(this.$route.path === "/admin/") {
+      this.$router.push("/admin/appAdmin")
+    }
     await this.$store.dispatch("user/getUserByToken");
   }
 };

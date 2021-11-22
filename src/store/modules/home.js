@@ -1,7 +1,7 @@
 import { addTemplate } from "../../service/form";
 
 const state = {
-  headTab: "1"
+  headTab: "/admin/appAdmin"
 };
 
 const mutations = {

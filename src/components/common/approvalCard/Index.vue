@@ -38,7 +38,7 @@ export default {
   methods: {
     setApprovalInfo() {
       this.$router.push({
-        path: "createApproval",
+        path: "/createApproval",
         query: {
           c_id: this.item.c_id,
         },

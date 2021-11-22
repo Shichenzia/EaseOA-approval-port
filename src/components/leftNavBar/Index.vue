@@ -5,30 +5,52 @@
     class="el-menu-vertical-demo"
     @select="handleSelect"
   >
-  <el-menu-item index="1">审批管理</el-menu-item>
+  <el-menu-item index="/admin/appAdmin">审批管理</el-menu-item>
   <el-menu-item index="2">数据导出</el-menu-item>
   <el-menu-item index="3">特色功能</el-menu-item>
-  <el-menu-item index="4">权限管理</el-menu-item>
-  <el-submenu index="5">
+  <el-menu-item index="/admin/authority">权限管理</el-menu-item>
+  <el-submenu index="/admin/team">
     <template slot="title">组织架构</template>
-    <el-menu-item index="5-1">成员与部门</el-menu-item>
-    <el-menu-item index="5-2">角色管理</el-menu-item>
+    <el-menu-item index="/admin/team/Departmentanduser">成员与部门</el-menu-item>
+    <el-menu-item index="/admin/team/Role">角色管理</el-menu-item>
   </el-submenu>
   </el-menu>
 </template>
 
 <script>
+import { mapState } from 'vuex';
 export default {
   data() {
     return {
-      active: "1",
+      // active: "/admin/appAdmin",
     };
   },
   methods: {
     handleSelect(key) {
+      if(key === this.$route.path) {
+        return;
+      }
+      this.$router.push(key);
       this.$store.commit("home/setHeadTab", key);
     }
   },
+  computed: {
+    ...mapState({
+      active: state => state.home.headTab
+    })
+  },
+  watch: {
+    $route: function(newval) {
+      if(newval.path === "/admin/" || newval.path === "/admin") {
+        this.$router.push("/admin/appAdmin")
+        return;
+      }
+      this.$store.commit("home/setHeadTab", newval.path);
+    }
+  },
+  mounted() {
+    this.$store.commit("home/setHeadTab", this.$route.path);
+  }
 };
 </script>
 

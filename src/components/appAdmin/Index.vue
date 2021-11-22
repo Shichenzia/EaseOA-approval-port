@@ -52,7 +52,7 @@ export default {
   methods: {
     goCreateApproval() {
       this.$router.push({
-        path: "createApproval",
+        path: "/createApproval",
       });
     },
     async addClass() {

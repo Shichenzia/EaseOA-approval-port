@@ -17,7 +17,7 @@
       </el-menu>
     </div>
     <div class="main">
-      <member v-if="activeIndex === '1'" />
+      <member v-if="activeIndex === '1'" @select="handleSelect" />
       <group v-if="activeIndex === '2'" />
     </div>
   </div>
@@ -41,7 +41,7 @@ export default {
     handleSelect(key) {
       console.log(key);
       this.activeIndex = key;
-    }
+    },
   }
 }
 </script>

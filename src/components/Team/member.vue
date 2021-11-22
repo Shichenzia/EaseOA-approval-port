@@ -8,8 +8,12 @@
       >
       </el-input>
       <div class="btns">
-        <el-button plain icon="el-icon-plus">新建部门</el-button>
-        <el-button plain icon="el-icon-user">管理部门</el-button>
+        <el-button plain icon="el-icon-plus" @click="adminGroup"
+          >新建部门</el-button
+        >
+        <el-button plain icon="el-icon-user" @click="adminGroup"
+          >管理部门</el-button
+        >
       </div>
     </div>
     <div class="member-box-right">
@@ -20,34 +24,88 @@
           <span>4</span>
         </div>
         <div class="member-menu-right">
-          <el-button type="primary" icon="el-icon-plus">添加人员</el-button>
+          <el-button type="primary" icon="el-icon-plus" @click="addMember"
+            >添加人员</el-button
+          >
           <el-button plain>变更部门</el-button>
           <el-button plain type="danger">离职操作</el-button>
         </div>
       </div>
       <el-table
+        class="member-list"
         ref="multipleTable"
-        :data="tableData"
+        :data="memberList"
         tooltip-effect="dark"
         style="width: 100%"
         @selection-change="handleSelectionChange"
       >
         <el-table-column type="selection" width="55"> </el-table-column>
-        <el-table-column prop="name" label="姓名" width="100"></el-table-column>
-        <el-table-column label="入职日期" width="120">
-          <template slot-scope="scope">{{ scope.row.date }}</template>
+        <el-table-column
+          prop="c_name"
+          label="姓名"
+          width="120"
+        ></el-table-column>
+        <el-table-column
+          prop="c_ctime"
+          label="入职日期"
+          width="220"
+        ></el-table-column>
+        <el-table-column
+          prop="c_phone"
+          label="电话"
+          width="150"
+        ></el-table-column>
+        <el-table-column
+          prop="c_email"
+          label="邮箱"
+          width="250"
+        ></el-table-column>
+        <el-table-column label="部门" width="300">
+          <template slot-scope="scope">
+            <el-tag
+              v-for="item in scope.row.groups"
+              :key="item.gid"
+              class="mr-3"
+              closable
+              @click="
+                () => {
+                  setGroup(item);
+                }
+              "
+              @close="
+                () => {
+                  delGroup(item);
+                }
+              "
+            >
+              {{ item.gname }}
+            </el-tag>
+          </template>
         </el-table-column>
-        <el-table-column prop="name" label="电话" width="120"></el-table-column>
-        <el-table-column prop="name" label="部门" width="120"></el-table-column>
-        <el-table-column prop="address" label="地址" show-overflow-tooltip>
-        </el-table-column>
+        <el-table-column
+          prop="address"
+          label="地址"
+          width="250"
+          show-overflow-tooltip
+        ></el-table-column>
       </el-table>
     </div>
+    <MemberDialog
+      :dialogFormVisible="dialogFormVisible"
+      @setDialogFormVisible="setDialogFormVisible"
+      :item="item"
+    />
   </div>
 </template>
 
 <script>
+import MemberDialog from "./MemberDialog";
+import { mapState } from "vuex";
+
 export default {
+  components: {
+    MemberDialog,
+  },
   data() {
     return {
       serch: "",
@@ -89,7 +147,48 @@ export default {
         },
       ],
       multipleSelection: [],
+      dialogFormVisible: false,
+      item: {},
     };
+  },
+  computed: {
+    ...mapState({
+      memberList: (state) => state.user.memberList,
+    }),
+  },
+  async mounted() {
+    await this.$store.dispatch("user/listMember");
+    await this.$store.dispatch("user/getAllGroupList");
+    await this.$store.dispatch("user/getUserListByName", { name: "" });
+  },
+  methods: {
+    handleSelectionChange(val) {
+      this.multipleSelection = val;
+    },
+
+    adminGroup() {
+      this.$emit("select", "2");
+    },
+
+    async addMember() {
+      this.dialogFormVisible = true;
+      this.item = {};
+    },
+
+    async setGroup(item) {
+      this.item = item;
+      this.dialogFormVisible = true;
+    },
+
+    async delGroup(item) {
+      await this.$store.dispatch("user/deleteMember", {
+        id: item.c_id,
+      });
+    },
+
+    setDialogFormVisible(visible) {
+      this.dialogFormVisible = visible;
+    },
   },
 };
 </script>
@@ -120,6 +219,7 @@ export default {
   }
   .member-box-right {
     min-width: 685px;
+    width: 100%;
     padding: 20px;
     .member-menu {
       display: flex;
@@ -137,13 +237,37 @@ export default {
         }
       }
 
-      .member-menu-right{
-        button{
+      .member-menu-right {
+        button {
           font-size: 14px;
         }
       }
-
     }
+
+    .member-list {
+      .span-btn {
+        font-size: 14px;
+        padding: 5px;
+        cursor: pointer;
+      }
+
+      .span-btn:hover {
+        text-decoration: underline;
+      }
+
+      .span-btn-primary {
+        color: #409eff;
+      }
+
+      .span-btn-danger {
+        color: #f56c6c;
+      }
+    }
+  }
+  .mr-3 {
+    margin: 10px;
+    margin-left: 0;
+    cursor: pointer;
   }
 }
 </style>

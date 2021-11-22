@@ -77,7 +77,7 @@ export default {
   },
   methods: {
     goBack() {
-      this.$router.push("/");
+      this.$router.push("/admin/");
     },
     async setstepsNum(fun) {
       if (fun === "last") {

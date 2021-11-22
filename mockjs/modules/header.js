@@ -156,3 +156,35 @@ Mock.mock(`${REQUEST_DOMAIN}/data`, {
     },
   },
 });
+
+Mock.mock(`https://stavinli.gitee.io/workflow/departments.json?parentId=0`, {
+  code: "200",
+  msg: "success",
+  data: {
+    childDepartments: [
+      {
+        departmentKey: "RLXZB_V2",
+        departmentName: "人力行政部",
+        id: "150",
+        parentId: "0",
+        departmentNames: "人力行政部",
+      },
+      {
+        departmentKey: "ZNBN",
+        departmentName: "法务部",
+        id: "324",
+        parentId: "0",
+        departmentNames: "法务部",
+      },
+    ],
+    employees: [
+      {
+        id: "53128111",
+        employeeName: "亚nan",
+        isLeave: "0",
+        open: "false",
+      },
+    ],
+    titleDepartments: [],
+  },
+});
