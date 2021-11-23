@@ -33,7 +33,7 @@ export default {
     }),
   },
   async mounted() {
-    if(this.$route.path === "/admin/") {
+    if(this.$route.path === "/admin/" || this.$route.path === "/") {
       this.$router.push("/admin/appAdmin")
     }
     await this.$store.dispatch("user/getUserByToken");

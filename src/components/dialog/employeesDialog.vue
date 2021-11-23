@@ -134,7 +134,7 @@ export default {
         ...this.checkedEmployessList,
       ].map((item) => ({
         type: item.c_name ? 1 : 3,
-        targetId: item.c_id,
+        targetId: item.c_uid,
         name: item.c_name || item.c_name,
       }));
       console.log(checkedList);
