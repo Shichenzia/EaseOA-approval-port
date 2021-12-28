@@ -1,54 +1,100 @@
 <template>
-  <el-card class="box-card" shadow="hover">
-    <div class="heard">
-      <div class="title">请假</div>
-      <div><el-tag type="success" size="small">标签二</el-tag></div>
-    </div>
+  <div class="approval-card-box">
     <div class="avatar-box">
-      <el-avatar
-        src="https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png"
-        :size="24"
-      ></el-avatar>
-      <span style="margin-left: 10px">屈君臣</span>
+      <div class="flow-icon">
+        <el-avatar :src="this.item.c_process_icon" :size="42"></el-avatar>
+      </div>
+      <div class="flow-card-detail">
+        <div>{{ this.item.c_title }}</div>
+        <div class="desc">{{ this.item.c_desc }}</div>
+      </div>
     </div>
-    <div class="content">
-      <div>请假类型：事假</div>
-      <div>开始时间：事假</div>
+    <div class="Power">全员可见</div>
+    <div class="menu">
+      <el-tooltip class="item" effect="dark" content="编辑" placement="top">
+        <i class="el-icon-edit" @click="setApprovalInfo"></i>
+      </el-tooltip>
+      <el-tooltip class="item" effect="dark" content="复制" placement="top">
+        <i class="el-icon-copy-document"></i>
+      </el-tooltip>
+      <el-tooltip class="item" effect="dark" content="禁用" placement="top">
+        <i class="el-icon-circle-close"></i>
+      </el-tooltip>
+      <el-tooltip class="item" effect="dark" content="删除" placement="top">
+        <i class="el-icon-delete" @click="delApproval"></i>
+      </el-tooltip>
     </div>
-    <div class="time">
-      处理时间：09-12 15:13
-    </div>
-  </el-card>
+  </div>
 </template>
 
+<script>
+export default {
+  props: {
+    item: {
+      typeof: Object,
+      default: {},
+    },
+  },
+  methods: {
+    setApprovalInfo() {
+      this.$router.push({
+        path: "/createApproval",
+        query: {
+          c_id: this.item.c_id,
+        },
+      });
+    },
+
+    delApproval() {
+      this.$store.dispatch("approval/delProcessById", { id: this.item.c_id });
+    },
+  },
+};
+</script>
+
 <style lang="scss" scope>
-.box-card {
-  margin-bottom: 10px;
-  .el-card__body{
-    padding: 10px;
-  }
-  .heard {
+.approval-card-box {
+  padding: 20px;
+  height: 82px;
+  display: flex;
+  justify-content: space-between;
+  .avatar-box {
+    width: 470px;
     display: flex;
-    justify-content: space-between;
-    height: 24px;
-    margin-bottom: 10px;
-    .title {
-      font-weight: 500;
+    overflow: hidden;
+    align-items: center;
+    .flow-icon {
+      height: 42px;
+    }
+    .flow-card-detail {
+      margin-left: 10px;
+
+      .desc {
+        font-size: 12px;
+        color: #9e9e9e;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        -o-text-overflow: ellipsis;
+      }
     }
   }
-  .avatar-box {
-    height: 24px;
+  .Power {
     display: flex;
     align-items: center;
+    width: 300px;
+    padding: 0 32px 0 10px;
   }
-  .content {
-    div{
-      font-size: 14px;
-      margin: 10px 0;
+  .menu {
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    i {
+      margin-left: 10px;
     }
   }
-  .time{
-    font-size: 12px;
-  }
+}
+.approval-card-box:hover {
+  background-color: #eff0f1;
 }
 </style>

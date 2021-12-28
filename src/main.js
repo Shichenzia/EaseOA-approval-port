@@ -48,6 +48,9 @@ Vue.use(element);
 Vue.use(formCreate);
 Vue.use(FcDesigner);
 
+// 将element-ui的 $message 方法挂载到window上，以实现在store中调用
+window.$message = Vue.prototype.$message;
+
 new Vue({
   router,
   store,

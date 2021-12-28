@@ -1,6 +1,8 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import index from "./modules/index";
+import user from "./modules/user";
+import home from "./modules/home";
+import approval from "./modules/approval";
 
 Vue.use(Vuex);
 
@@ -44,6 +46,8 @@ export default new Vuex.Store({
     },
   },
   modules: {
-    index,
+    user,
+    home,
+    approval
   },
 });

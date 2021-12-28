@@ -1,24 +1,27 @@
 .header-box {
-  height: 4rem;
+  height: 64px;
   display: flex;
+  min-width: 1200px;
   justify-content: space-between;
   padding: 12px;
   padding-right: 10px;
-  // border-bottom: 2px solid;
   background-color: #FFFFFF;
   box-shadow: 0 1px 6px 0 rgb(0 0 0 / 4%);
   .header-left {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     .logo {
-      border-right: 2px solid #f1f3f4;
-      padding-right: 5px;
+      padding-right: 10px;
+      cursor: pointer;
+      img{
+        width: 200px;
+      }
     }
     .tabs {
       margin: 0 10px;
-      .el-tabs__nav-wrap::after{
-        background-color: #fff;
-      }
+      font-size: 14px;
+      color: #666;
     }
   }
   .header-right{

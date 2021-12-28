@@ -1,0 +1,21 @@
+.home-box{
+  width: 100%;
+  height: 100vh;
+  .context-box {
+    width: 100%;
+    min-width: 1200px;
+    margin-top: 5px;
+    display: flex;
+    height: calc(100% - 69px);
+    .left{
+      height: 100%;
+    }
+    .right{
+      min-width: 965px;
+      width: calc(100% - 235px);
+      background-color: #fff;
+      padding: 20px;
+      overflow-y: auto;
+    }
+  }
+}
