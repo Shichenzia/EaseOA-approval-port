@@ -115,12 +115,12 @@ export default {
       const approvalId = getQueryVariable("c_id");
       if(approvalId) {
         await this.$store.dispatch('approval/setProcessById', {id: approvalId, approverIcon, approvalName, approvalDesc, classify, starter, FcDesignerRuleJson, FcDesignerOptionsJson, processConfigJson, createor: userInfo.c_id });
-        // this.goBack();
+        this.goBack();
         return;
       }
 
       await this.$store.dispatch('approval/issueProcess', { approverIcon, approvalName, approvalDesc, classify, starter, FcDesignerRuleJson, FcDesignerOptionsJson, processConfigJson, createor: userInfo.c_id });
-      // this.goBack();
+      this.goBack();
       return;
     }
   },

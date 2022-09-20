@@ -6,8 +6,8 @@
     @select="handleSelect"
   >
   <el-menu-item index="/admin/appAdmin">审批管理</el-menu-item>
-  <el-menu-item index="2">数据导出</el-menu-item>
-  <el-menu-item index="3">特色功能</el-menu-item>
+  <el-menu-item index="/admin/dataEduce">数据导出</el-menu-item>
+  <el-menu-item index="/admin/feature">特色功能</el-menu-item>
   <el-menu-item index="/admin/authority">权限管理</el-menu-item>
   <el-submenu index="/admin/team">
     <template slot="title">组织架构</template>

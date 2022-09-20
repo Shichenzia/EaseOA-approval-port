@@ -130,7 +130,7 @@ export default {
   methods: {
     saveDialog() {
       let checkedList = [
-        ...this.checkedDepartmentList,
+        // ...this.checkedDepartmentList,
         ...this.checkedEmployessList,
       ].map((item) => ({
         type: item.c_name ? 1 : 3,
@@ -147,6 +147,9 @@ export default {
 
     handleCheckChange(data, checked, indeterminate) {
       console.log(data, checked, indeterminate);
+      if(data.icon === 'el-icon-folder') {
+        return;
+      }
       if(checked){
         this.$func.toChecked(this.checkedEmployessList, data);
       } else {

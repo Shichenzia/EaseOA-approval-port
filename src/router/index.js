@@ -4,6 +4,8 @@ import Home from '../views/Home/Index.vue'
 import CreateApproval from "../views/CreateApproval/Index.vue";
 import AppAdmin from "../components/appAdmin/Index.vue";
 import Authority from "../components/Authority/Index.vue";
+import DataEduce from "../components/DataEduce/Index.vue";
+import Feature from "../components/Feature/Index.vue";
 import Departmentanduser from "../components/Team/Departmentanduser.vue";
 import Team from "../components/Team/Index.vue"
 import Role from "../components/Team/Role.vue";
@@ -32,6 +34,16 @@ const routes = [
         path: 'authority',
         name: 'Authority',
         component: Authority
+      }, 
+      {
+        path: 'dataEduce',
+        name: 'DataEduce',
+        component: DataEduce
+      },
+      {
+        path: 'feature',
+        name: 'Feature',
+        component: Feature
       },
       {
         path: 'team',

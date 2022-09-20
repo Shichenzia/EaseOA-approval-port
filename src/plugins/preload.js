@@ -42,14 +42,14 @@ All.prototype = {
             return arr.map(item => { return item.name }).toString()
         }
     },
-    toggleClass(arr, elem, key = 'id') {
+    toggleClass(arr, elem, key = 'c_id') {
         return arr.some(item => { return item[key] == elem[key] });
     },
-    toChecked(arr, elem, key = 'id') {
+    toChecked(arr, elem, key = 'c_id') {
         var isIncludes = this.toggleClass(arr, elem, key);
         !isIncludes ? arr.push(elem) : this.removeEle(arr, elem, key);
     },
-    removeEle(arr, elem, key = 'id') {
+    removeEle(arr, elem, key = 'c_id') {
         var includesIndex;
         arr.map((item, index) => {
             if (item[key] == elem[key]) {

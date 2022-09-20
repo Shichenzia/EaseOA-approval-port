@@ -5,9 +5,9 @@
                 <div class="approver_content">
                     <el-radio-group v-model="approverConfig.settype" class="clear" @change="changeType">
                         <el-radio :label="1">指定成员</el-radio>
-                        <el-radio :label="2">主管</el-radio>
+                        <el-radio :label="2" disabled>主管</el-radio>
                         <el-radio :label="4" disabled>发起人自选</el-radio>
-                        <el-radio :label="5">发起人自己</el-radio>
+                        <el-radio :label="5" disabled>发起人自己</el-radio>
                         <el-radio :label="7" disabled>连续多级主管</el-radio>
                     </el-radio-group>
                     <el-button type="primary" @click="addApprover" v-if="approverConfig.settype==1">添加/修改成员</el-button>

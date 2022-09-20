@@ -164,6 +164,9 @@ export default {
     },
     handleCheckChange(data, checked, indeterminate) {
       console.log(data, checked, indeterminate);
+      if(data.icon === 'el-icon-folder') {
+        return;
+      }
       if (checked) {
         this.$func.toChecked(this.checkedEmployessList, data);
       } else {
